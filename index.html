@@ -1,1 +1,136 @@
-привет
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Военная авиация</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #1d1d1f;
+            color: #fff;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #a1a1a6;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-text {
+            padding: 1rem 1.25rem 1.25rem;
+        }
+
+        .card-text h2 {
+            font-size: 1.15rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .card-text p {
+            color: #6e6e73;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #6e6e73;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Военная авиация</h1>
+        <p>Одни из самых известных и эффективных боевых самолетов в истории советской и российской авиации.</p>
+    </header>
+
+    <main>
+        <section class="gallery">
+            <article class="card">
+                <img src="images/photo 1.jpg" alt="Первая картинка">
+                <div class="card-text">
+                    <h2>МиГ-25 Foxbat</h2>
+                    <p>советский сверхзвуковой истребитель-перехватчик третьего поколения, созданный в ОКБ Микояна и Гуревича. Он стал ключевым элементом системы противовоздушной обороны (ПВО) СССР, предназначенным для борьбы с высотными сверхзвуковыми самолётами-разведчиками и стратегическими бомбардировщиками потенциального противника, такими как американские A-12, SR-71 и XB-70.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/photo 2.jpg" alt="Вторая картинка">
+                <div class="card-text">
+                    <h2>МиГ-29 Fulcrum</h2>
+                    <p>советский и российский многоцелевой фронтовой сверхзвуковой истребитель четвёртого поколения. Его создавали в ОКБ имени А. И. Микояна. Задача машины — обеспечивать локальное превосходство в воздухе: сбивать вражеские самолёты (в том числе в сложных метеоусловиях), сопровождать свои ударные самолёты, а также наносить удары по наземным и морским целям.</p>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="images/photo 3.jpg" alt="Третья картинка">
+                <div class="card-text">
+                    <h2>Су-25 Frogfoot</h2>
+                    <p>бронированный дозвуковой штурмовик. Его главная задача — оказывать непосредственную поддержку сухопутным войскам прямо на поле боя. Он работает при визуальной видимости цели (днём и ночью), а также может уничтожать объекты по заданным координатам в любых метеоусловиях.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 Мой сайт. Все права защищены.
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
