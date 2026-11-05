@@ -1,1 +1,124 @@
-ggrr
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <table class="tablica" style="height:60vh" border="1">
+        <tr>
+            <td class="left" style="width:10vw">
+                <ul>
+                    <li><a href="index.html">Главная страница</a></li>
+                    <li><a href="table.html">Таблица</a></li>
+                    <li><a href="bootstrap.html">bootstrap</a></li>
+                    <li><a href="flutter.html">flutter</a></li>
+                    <li><a href="flex.html">flex</a></li>
+                </ul>
+            </td>
+
+            <td class="content" style="width:80vw">
+                <div class="Zagolovok">
+                    <h1>Регистрация</h1>
+
+                    <div class="button1">
+                        <button class="btn-own" id="googleBtn">
+                            Зарегистрироваться через Gmail
+                        </button>
+                    </div>
+                    <div class="button2">
+                        <button class="btn-own" id="githubBtn">
+                            Зарегистрироваться через GitHub
+                        </button>
+                    </div>
+
+                    <!-- Статус / ошибки -->
+                    <p id="status" style="margin-top:20px; color:#333;"></p>
+
+                    <!-- Кнопка выхода (появляется после входа) -->
+                    <button class="btn-own" id="logoutBtn" style="display:none; margin-top:10px;">
+                        Выйти
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import {
+            getAuth,
+            signInWithPopup,
+            GoogleAuthProvider,
+            GithubAuthProvider,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+        // Ваша конфигурация
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZZ8Z6S-5nDULrT9tnXmIoKB6DeayZT34",
+            authDomain: "project-1-f8d53.firebaseapp.com",
+            projectId: "project-1-f8d53",
+            storageBucket: "project-1-f8d53.firebasestorage.app",
+            messagingSenderId: "390655924744",
+            appId: "1:390655924744:web:fa7f3c2aef7ad661400fbd",
+            measurementId: "G-JZMX4WDNCX"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const statusEl = document.getElementById('status');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // ---------- Вход через Gmail (Google) ----------
+        document.getElementById('googleBtn').addEventListener('click', async () => {
+            const provider = new GoogleAuthProvider();
+            try {
+                const result = await signInWithPopup(auth, provider);
+                statusEl.textContent = `Вы вошли как: ${result.user.email}`;
+            } catch (error) {
+                statusEl.textContent = `Ошибка Google: ${error.code} — ${error.message}`;
+                console.error(error);
+            }
+        });
+
+        // ---------- Вход через GitHub ----------
+        document.getElementById('githubBtn').addEventListener('click', async () => {
+            const provider = new GithubAuthProvider();
+            try {
+                const result = await signInWithPopup(auth, provider);
+                statusEl.textContent = `Вы вошли как: ${result.user.email || result.user.displayName}`;
+            } catch (error) {
+                statusEl.textContent = `Ошибка GitHub: ${error.code} — ${error.message}`;
+                console.error(error);
+            }
+        });
+
+        // ---------- Выход ----------
+        logoutBtn.addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                statusEl.textContent = 'Вы вышли из системы';
+            } catch (error) {
+                statusEl.textContent = `Ошибка выхода: ${error.message}`;
+            }
+        });
+
+        // ---------- Отслеживание состояния входа ----------
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                statusEl.textContent = `Авторизован: ${user.email || user.displayName}`;
+                logoutBtn.style.display = 'inline-block';
+            } else {
+                logoutBtn.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+   
